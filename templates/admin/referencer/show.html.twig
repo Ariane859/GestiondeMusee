@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Referencer{% endblock %}
+
+{% block body %}
+   <div class="container mt-4">
+    <h1>Referencer</h1>
+    
+     <table class="table">
+        <tbody>
+                <tr>
+                <th>Nom du site :</th>
+                <td>{{ referencer.nomSite }}</td>
+                </tr>
+                <tr>
+                <th>Numéro Page :</th>
+                <td>{{ referencer.numeroPage }}</td>
+                </tr>
+                <tr>
+                <th>ISBN :</th>
+                <td>{{ referencer.ISBN }}</td>   
+                </tr>
+        </tbody>
+    </table>
+    <div class="text-right">
+    <a href="{{ path('admin.referencer.index') }}" class="btn btn-primary">Retourner à la liste</a>
+    </div>  
+    <a href="{{ path('admin.referencer.edit', {'id': referencer.id}) }}" class="btn btn-primary">Editer</a>
+    
+    {{ include('admin/referencer/_delete_form.html.twig') }}
+    
+{% endblock %}

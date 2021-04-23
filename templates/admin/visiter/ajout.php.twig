@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Ajouter' %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Ajouter</h1>
+         <hr class="underline">
+        {{ include('admin/visiter/_form.html.twig', {form: form, button: 'Ajouter'}) }}
+    </div><br>
+    <div class="text-right">
+            <a href="{{ path('admin.visiter.index') }}" class="btn btn-primary">Liste</a>
+        </div>
+{% endblock %}

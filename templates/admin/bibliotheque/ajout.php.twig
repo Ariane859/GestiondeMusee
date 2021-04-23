@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Ajouter' %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Ajouter une bibliothèque</h1>
+        <hr class="underline">
+        {{ include('admin/bibliotheque/_form.html.twig', {form: form, button: 'Ajouter'}) }}
+    </div><br>
+    <div class="text-right">
+            <a href="{{ path('admin.bibliotheque.index') }}" class="btn btn-primary">Liste</a>
+        </div>
+{% endblock %}
+

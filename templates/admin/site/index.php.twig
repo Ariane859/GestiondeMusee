@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Liste' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Liste des sites</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class= "table table-striped">
+            <thead>
+                <tr>
+                <th>Nom du site</th>
+                <th>Année de couverture</th>
+                <th>Code du Pays</th>
+                <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for site in site %}
+                <tr>
+                    <td>{{ site.nomSite }}</td>
+                    <td>{{ site.anneedecouv.format('Y-m-d') }}</td>
+                    <td>{{ site.codePays }}</td>
+                    <td>
+                        <a href="{{ path('site_show', {id: site.id}) }}" class="btn btn-secondary">Voir</a>
+                        <a href="{{ path('admin.site.edit', {id: site.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post" action="{{ path('admin.site.delete', {id: site.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez vous vraiment supprimer ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ site.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('admin.site.ajout') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+    </div>
+{% endblock %}

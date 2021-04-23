@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Editer' %}
+
+{% block body %}
+
+    <div class="container mt-4">
+        <h1>Editer un musée</h1>
+        {{ include('admin/musee/_form.html.twig', {button: 'Editer'}) }}
+        <br><a href="{{ path('admin.musee.index') }}" class="btn btn-primary">Retourner à la liste</a>
+    </div>
+{% endblock %}
+

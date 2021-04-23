@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Liste' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Liste des jours</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class= "table table-striped">
+            <thead>
+                <tr>
+                <th>Jour</th>
+                <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for moment in moment %}
+                <tr>
+                    <td>{{ moment.jour.format('Y-m-d') }}</td>
+                    <td>
+                        <a href="{{ path('moment_show', {'id': moment.id}) }}" class="btn btn-secondary">Voir</a>
+                        <a href="{{ path('admin.moment.edit', {id: moment.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post" action="{{ path('admin.moment.delete', {id: moment.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez vous vraiment supprimer ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ moment.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+
+                    </td>
+                </tr>
+            
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('admin.moment.ajout') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+    </div>
+{% endblock %}

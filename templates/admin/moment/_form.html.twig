@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+        <div class="row" style="border:solid white 2px;
+        background-color:#fff;
+    border: solid 2px #ddd;
+    margin-left:7%;
+    margin-right:10%;
+    padding-left:5%;
+    padding-right:10%;
+    margin-bottom:1%;
+    margin-top:3%;
+    padding-bottom:6%;
+    border-radius:20px;">
+            <div class="col-12">{{ form_row(form.jour) }}</div>
+            {{ form_widget(form) }}
+        <button class="btn btn-primary">{{ button|default('Ajouter') }}</button>
+        </div>
+{{ form_end(form) }}

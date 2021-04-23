@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Liste' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Liste des pays</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class= "table table-striped">
+            <thead>
+                <tr>
+                <th>Code du Pays</th>
+                <th>Nbre d'habitant</th>
+                <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pays in pays %}
+                <tr>
+                    <td>{{ pays.codePays }}</td>
+                    <td>{{ pays.nbhabitant }}</td>
+                    <td>
+                        <a href="{{ path('pays_show', {'id': pays.id}) }}" class="btn btn-secondary">Voir</a>
+                        <a href="{{ path('admin.pays.edit', {id: pays.id}) }}" class="btn btn-secondary">Editer</a>
+                        <form method="post" action="{{ path('admin.pays.delete', {id: pays.id}) }}" style="display: inline-block" onsubmit="return confirm('Voulez vous vraiment supprimer ?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pays.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right">
+            <a href="{{ path('admin.pays.ajout') }}" class="btn btn-primary">Ajouter</a>
+        </div>
+    </div>
+{% endblock %}

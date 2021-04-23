@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Visiter{% endblock %}
+
+{% block body %}
+   <div class="container mt-4">
+    <h1>Visiter</h1>
+    
+     <table class="table">
+        <tbody>
+            <tr>
+            <th>Numéro Musée :</th>
+            <td>{{ visiter.numMus }}</td>
+            </tr>
+            <tr>
+            <th>Jour :</th>
+            <td>{{ visiter.jour.format('Y-m-d') }}</td>
+            </tr>
+            <tr>
+            <th>Nombre de visiteurs :</th>
+            <td>{{ visiter.nbvisiteurs }}</td>   
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-right">
+    <a href="{{ path('admin.visiter.index') }}" class="btn btn-primary">Retourner à la liste</a>
+    </div>  
+    <a href="{{ path('admin.visiter.edit', {'id': visiter.id}) }}" class="btn btn-primary">Editer</a>
+    
+    {{ include('admin/visiter/_delete_form.html.twig') }}
+    
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pays{% endblock %}
+
+{% block body %}
+   <div class="container mt-4">
+    <h1>Pays</h1>
+    
+     <table class="table">
+        <tbody>
+                <tr>
+                <th>Numéro Musée :</th>
+                <td>{{ musee.numMus }}</td>
+                </tr>
+                <tr>
+                <th>Nom Musée :</th>
+                <td>{{ musee.nomMus }}</td>
+                </tr>
+                <tr>
+                <th>Nombres de livres :</th>
+                <td>{{ musee.nblivres }}</td>
+                </tr>
+                <tr>
+                <th>Code du Pays :</th>
+                <td>{{ musee.codePays }}</td>
+                </tr>
+            </tbody>
+    </table>
+    <div class="text-right">
+    <a href="{{ path('admin.musee.index') }}" class="btn btn-primary">Retourner à la liste</a>
+    </div>  
+    <a href="{{ path('admin.musee.edit', {'id': musee.id}) }}" class="btn btn-primary">Editer</a>
+    
+    {{ include('admin/musee/_delete_form.html.twig') }}
+    
+{% endblock %}

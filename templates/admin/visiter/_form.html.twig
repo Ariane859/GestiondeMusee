@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-4">{{ form_row(form.numMus) }}</div>
+            <div class="col-md-4">{{ form_row(form.jour) }}</div>
+            <div class="col-md-4">{{ form_row(form.nbvisiteurs) }}</div>
+        </div>
+            {{ form_widget(form) }}
+        <button class="btn btn-primary">{{ button|default('Ajouter') }}</button>
+{{ form_end(form) }}
